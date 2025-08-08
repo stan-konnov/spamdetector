@@ -1,0 +1,17 @@
+services:
+
+  ollama:
+    build:
+      context: .
+      dockerfile: Dockerfile.ollama
+    restart: unless-stopped
+    container_name: nomadloops-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data-container:/root/.ollama
+    env_file:
+      - .env
+
+volumes:
+  ollama-data-container:
