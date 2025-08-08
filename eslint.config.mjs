@@ -13,25 +13,19 @@ export default [
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
-      globals: {
-        console: 'readonly',
-        process: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        setInterval: 'readonly',
-        clearInterval: 'readonly',
-      },
     },
     plugins: {
       '@typescript-eslint': ts,
       prettier: prettierPlugin,
     },
     rules: {
-      'prettier/prettier': 'warn',
+      'prettier/prettier': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
+  },
+  {
     ignores: [
       '**/node_modules/**',
       '**/dist/**',

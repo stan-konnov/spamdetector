@@ -2,26 +2,26 @@
   "name": "spamdetector",
   "version": "1.0.0",
   "description": "Spam detector middleware to flag spammy or abusive social media posts.",
-  "homepage": "https://github.com/stan-konnov/spamdetector#readme",
-  "bugs": {
-    "url": "https://github.com/stan-konnov/spamdetector/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stan-konnov/spamdetector.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Stan Konnov",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "prepare": "husky",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts --fix",
+    "build": "tsc && tsc-alias",
+    "start": "node dist/main.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/main.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.6",
+    "@nestjs/platform-express": "^11.1.6",
     "@nestjs/schedule": "^6.0.0",
     "@prisma/client": "^6.13.0",
     "axios": "^1.11.0",
@@ -42,6 +42,8 @@
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.2"
   }
 }
