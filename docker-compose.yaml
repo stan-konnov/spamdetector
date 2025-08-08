@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile.ollama
     restart: unless-stopped
-    container_name: nomadloops-ollama
+    container_name: spamdetector-ollama
     ports:
       - "11434:11434"
     volumes:
@@ -13,5 +13,19 @@ services:
     env_file:
       - .env
 
+  postgres:
+    container_name: spamdetector-postgres
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: spamdetector
+      POSTGRES_PASSWORD: spamdetector
+      POSTGRES_DB: spamdetector
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data_container:/var/lib/postgresql/data
+
 volumes:
   ollama-data-container:
+  postgres_data_container:
