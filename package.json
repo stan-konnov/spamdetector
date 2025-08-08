@@ -1,0 +1,18 @@
+{
+  "name": "spamdetector",
+  "version": "1.0.0",
+  "description": "Spam detector middleware to flag spammy or abusive social media posts.",
+  "homepage": "https://github.com/stan-konnov/spamdetector#readme",
+  "bugs": {
+    "url": "https://github.com/stan-konnov/spamdetector/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stan-konnov/spamdetector.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {}
+}
