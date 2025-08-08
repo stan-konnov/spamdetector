@@ -4,16 +4,6 @@ import tsParser from '@typescript-eslint/parser';
 import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
-  {
-    ignores: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/coverage/**',
-      '**/*.d.ts',
-      '**/*.js',
-      '**/*.json',
-    ],
-  },
   js.configs.recommended,
   {
     files: ['**/*.ts'],
@@ -42,5 +32,15 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
+  },
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/coverage/**',
+      '**/*.d.ts',
+      '**/*.js',
+      '**/*.json',
+    ],
   },
 ];
