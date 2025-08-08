@@ -7,7 +7,7 @@ import { DataApiResponseDto } from '@src/common/dtos/data.api.response';
 import { CreatePostRequestDto } from '@src/posts/dtos/create.post.request';
 
 @Controller('posts')
-export class PostController {
+export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
