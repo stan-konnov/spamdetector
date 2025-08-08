@@ -2,22 +2,18 @@
   "name": "spamdetector",
   "version": "1.0.0",
   "description": "Spam detector middleware to flag spammy or abusive social media posts.",
-  "homepage": "https://github.com/stan-konnov/spamdetector#readme",
-  "bugs": {
-    "url": "https://github.com/stan-konnov/spamdetector/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stan-konnov/spamdetector.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Stan Konnov",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "prepare": "husky",
     "lint": "eslint . --ext .ts",
-    "start": "ts-node --project tsconfig.json -r tsconfig-paths/register src/main.ts"
+    "start:dev": "ts-node --project tsconfig.json -r tsconfig-paths/register src/main.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",
