@@ -15,4 +15,4 @@ const bootstrap = async (): Promise<void> => {
   Logger.log(`Server is running on http://localhost:${port}`);
 };
 
-bootstrap()
+bootstrap();
