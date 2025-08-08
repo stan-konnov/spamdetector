@@ -5,7 +5,6 @@ import { DatabaseService } from '@src/database/database.service';
 
 @Injectable()
 export class PostsService {
-  // eslint-disable-next-line no-unused-vars
   constructor(private readonly database: DatabaseService) {}
 
   async createPost(content: string): Promise<Post> {
