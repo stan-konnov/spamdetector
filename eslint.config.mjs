@@ -25,7 +25,7 @@ export default [
 
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "error",
         {
           "args": "after-used",
           "argsIgnorePattern": "^_",
