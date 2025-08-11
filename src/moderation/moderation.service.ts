@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 
@@ -15,6 +15,7 @@ import {
 @Injectable()
 export class ModerationService {
   constructor(
+    private readonly logger: Logger,
     private readonly config: ConfigService,
     private readonly database: DatabaseService,
   ) {}
@@ -29,6 +30,8 @@ export class ModerationService {
         `Post with ID ${postId} does not exist or is not pending.`,
       );
     }
+
+    this.logger.log(`Moderating post with ID ${postId}. Content: ${postContent}`);
 
     try {
       const moderationVerdict = await this.generateModerationVerdict(postContent);
@@ -45,6 +48,10 @@ export class ModerationService {
           verdict: JSON.stringify(moderationVerdict),
         },
       });
+
+      this.logger.log(
+        `Post with ID ${postId} moderated successfully. Status updated to ${statusAfterModeration}.`,
+      );
     } catch (error: unknown) {
       throw new ModerationServiceError(
         `Moderation for post ${postId} failed with ${error instanceof Error ? error.message : 'Unknown error'}.`,
