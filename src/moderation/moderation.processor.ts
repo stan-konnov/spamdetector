@@ -1,10 +1,12 @@
 import { Processor, WorkerHost, OnWorkerEvent } from '@nestjs/bullmq';
-import { Job } from 'bullmq';
-import { ModerationJob } from '@src/moderation/types';
-import { DatabaseService } from '@src/database/database.service';
 import { Logger } from '@nestjs/common';
+import { Job } from 'bullmq';
 
-@Processor('moderation')
+import { ModerationJob } from '@src/moderation/types';
+import { MODERATION_QUEUE_NAME } from '@src/common/constants';
+import { DatabaseService } from '@src/database/database.service';
+
+@Processor(MODERATION_QUEUE_NAME)
 export class ModerationProcessor extends WorkerHost {
   constructor(
     private readonly databaseService: DatabaseService,
@@ -19,10 +21,6 @@ export class ModerationProcessor extends WorkerHost {
 
   @OnWorkerEvent('failed')
   onFailed(job: Job | undefined, err: Error): void {
-    if (job) {
-      this.logger.error(`Job ${job.id} failed with error: ${err.message}`);
-    } else {
-      this.logger.error(`Job failed with error: ${err.message}`);
-    }
+    this.logger.error(`Job (id?: ${job?.id ?? 'none'}) failed with error: ${err.message}`);
   }
 }

@@ -1,23 +1,17 @@
 import { Queue } from 'bullmq';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { InjectQueue } from '@nestjs/bullmq';
 import { Post, PostStatus } from '@prisma/client';
 
-import { MODERATE_QUEUE_ACTION } from '@src/common/constants';
+import { MODERATE_QUEUE_ACTION, MODERATION_QUEUE_NAME } from '@src/common/constants';
 import { DatabaseService } from '@src/database/database.service';
 
 @Injectable()
 export class PostsService {
-  private readonly moderationQueue: Queue;
-
   constructor(
-    private readonly config: ConfigService,
     private readonly database: DatabaseService,
-  ) {
-    this.moderationQueue = new Queue(this.config.get<string>('MODERATION_QUEUE_NAME')!, {
-      connection: { url: this.config.get('REDIS_URL') },
-    });
-  }
+    @InjectQueue(MODERATION_QUEUE_NAME) private readonly moderationQueue: Queue,
+  ) {}
 
   async createPost(content: string): Promise<Post> {
     const createdPost = await this.database.post.create({
