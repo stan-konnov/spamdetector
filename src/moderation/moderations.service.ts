@@ -19,7 +19,7 @@ export class ModerationService {
     private readonly database: DatabaseService,
   ) {}
 
-  async moderateAndPersist(postId: string, postContent: string): Promise<void> {
+  async moderateCreatedPost(postId: string, postContent: string): Promise<void> {
     const postToModerate = await this.database.post.findUnique({
       where: { id: postId, status: PostStatus.PENDING },
     });
