@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
 import { PostsModule } from '@src/posts/posts.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { moderationQueueConfig } from '@src/common/queue.config';
+import { moderationQueueConfig } from '@src/common/queues.config';
 
 @Module({
   imports: [
