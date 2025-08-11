@@ -7,5 +7,5 @@ export interface ModerationVerdict {
 
 export interface ModerationJob {
   postId: string;
-  content: string;
+  postContent: string;
 }

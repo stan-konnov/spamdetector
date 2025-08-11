@@ -25,7 +25,7 @@ export class PostsService {
       MODERATE_QUEUE_ACTION,
       {
         postId: createdPost.id,
-        content: createdPost.content,
+        postContent: createdPost.content,
       },
       {
         jobId: createdPost.id,

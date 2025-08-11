@@ -54,7 +54,7 @@ export class ModerationService {
       );
     } catch (error: unknown) {
       throw new ModerationServiceError(
-        `Moderation for post ${postId} failed with ${error instanceof Error ? error.message : 'Unknown error'}.`,
+        `Moderation for post ${postId} failed with: ${error instanceof Error ? error.message : 'Unknown error'}.`,
       );
     }
   }
@@ -67,7 +67,7 @@ export class ModerationService {
         stream: false,
       });
 
-      return JSON.parse(data) as ModerationVerdict;
+      return JSON.parse(data.response) as ModerationVerdict;
     } catch (error: unknown) {
       throw new CallToOllamaApiFailedError(
         `Call to Ollama API failed with: ${error instanceof Error ? error.message : 'Unknown error'}`,
