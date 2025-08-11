@@ -4,3 +4,8 @@ export interface ModerationVerdict {
   sensitive: boolean;
   reasoning: string[];
 }
+
+export interface ModerationJob {
+  postId: string;
+  content: string;
+}
