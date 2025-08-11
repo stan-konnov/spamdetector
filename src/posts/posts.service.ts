@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { Post, PostStatus } from '@prisma/client';
 
 import { MODERATE_QUEUE_ACTION } from '@src/common/constants';
-import { moderationQueueConfig } from '@src/common/queue.config';
 import { DatabaseService } from '@src/database/database.service';
 
 @Injectable()
@@ -15,7 +14,7 @@ export class PostsService {
     private readonly config: ConfigService,
     private readonly database: DatabaseService,
   ) {
-    this.moderationQueue = new Queue(this.config.get<string>('QUEUE_NAME')!, {
+    this.moderationQueue = new Queue(this.config.get<string>('MODERATION_QUEUE_NAME')!, {
       connection: { url: this.config.get('REDIS_URL') },
     });
   }
@@ -36,7 +35,6 @@ export class PostsService {
       },
       {
         jobId: createdPost.id,
-        ...moderationQueueConfig,
       },
     );
 
