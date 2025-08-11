@@ -1,5 +1,14 @@
 services:
 
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    container_name: spamdetector-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data-container:/data
+
   ollama:
     build:
       context: .
@@ -27,5 +36,6 @@ services:
       - postgres_data_container:/var/lib/postgresql/data
 
 volumes:
+  redis-data-container:
   ollama-data-container:
   postgres_data_container:
