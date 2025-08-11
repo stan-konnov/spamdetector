@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
 
-import { ModerationProcessor } from './moderation.processor';
+import { DatabaseModule } from '@src/database/database.module';
 import { MODERATION_QUEUE_NAME } from '@src/common/constants';
 import { moderationQueueConfig } from '@src/common/queues.config';
+import { ModerationProcessor } from '@src/moderation/moderation.processor';
 
 @Module({
   imports: [
+    DatabaseModule,
     BullModule.registerQueue({
       name: MODERATION_QUEUE_NAME,
       defaultJobOptions: moderationQueueConfig,
