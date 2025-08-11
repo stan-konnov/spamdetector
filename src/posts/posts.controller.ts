@@ -18,7 +18,7 @@ export class PostsController {
     return {
       success: true,
       data: createdPost,
-      message: 'Post created successfully',
+      message: 'Post created successfully.',
     };
   }
 }
