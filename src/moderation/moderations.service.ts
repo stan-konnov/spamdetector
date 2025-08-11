@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 
@@ -15,7 +15,6 @@ import {
 @Injectable()
 export class ModerationService {
   constructor(
-    private readonly logger: Logger,
     private readonly config: ConfigService,
     private readonly database: DatabaseService,
   ) {}
