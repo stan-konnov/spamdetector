@@ -7,10 +7,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     BullModule.forRootAsync({
+      inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         connection: { url: config.get<string>('REDIS_URL') },
       }),
-      inject: [ConfigService],
     }),
     BullModule.registerQueueAsync({
       inject: [ConfigService],
