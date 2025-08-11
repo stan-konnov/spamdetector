@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
 
 import { DatabaseModule } from '@src/database/database.module';
@@ -14,7 +14,7 @@ import { ModerationProcessor } from '@src/moderation/moderation.processor';
       defaultJobOptions: moderationQueueConfig,
     }),
   ],
-  providers: [ModerationProcessor],
+  providers: [Logger, ModerationProcessor],
   exports: [],
 })
 export class ModerationModule {}
