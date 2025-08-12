@@ -102,7 +102,6 @@ npm run start:dev        # ts-node-dev
 - **Prisma** provides type-safety and migration history kept in-git.
 - **Versioned API** allows future evolution without breaking existing clients.
 - **Consistent envelopes** (`success`, `data`, `message`) simplify client handling.
-- **Container-first**: Dev and prod Dockerfiles keep parity while optimizing for size/security in prod.
 
 ## Performance & Reliability
 - **Concurrency=4** on processing to utilise CPU while avoiding thundering herds.
