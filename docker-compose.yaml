@@ -35,6 +35,24 @@ services:
     volumes:
       - postgres_data_container:/var/lib/postgresql/data
 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: spamdetector-api
+    image: spamdetector-api:latest
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
+      - ollama
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/api
+
 volumes:
   redis-data-container:
   ollama-data-container:

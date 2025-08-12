@@ -1,0 +1,31 @@
+ARG NODE_VERSION=24
+
+FROM node:${NODE_VERSION}-bookworm-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssl ca-certificates python3 build-essential \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /api
+
+COPY package*.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Make sure the non-root
+# user can write if needed
+RUN chown -R node:node /api
+USER node
+
+# Defaults for file watching
+ENV NODE_ENV=development \
+    PORT=3000 \
+    CHOKIDAR_USEPOLLING=1 \
+    WATCHPACK_POLLING=true
+
+EXPOSE 3000 9229
+
+CMD ["npm", "run", "start:dev"]
