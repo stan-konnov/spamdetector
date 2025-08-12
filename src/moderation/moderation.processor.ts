@@ -4,9 +4,9 @@ import { Job } from 'bullmq';
 
 import { ModerationJob } from '@src/moderation/types';
 import { ModerationService } from '@src/moderation/moderation.service';
-import { MODERATION_QUEUE_NAME, N_JOBS_PER_QUEUE_WORKER } from '@src/common/constants';
+import { MODERATION_QUEUE_NAME, N_CONCURRENT_PROCESSES } from '@src/common/constants';
 
-@Processor(MODERATION_QUEUE_NAME, { concurrency: N_JOBS_PER_QUEUE_WORKER })
+@Processor(MODERATION_QUEUE_NAME, { concurrency: N_CONCURRENT_PROCESSES })
 export class ModerationProcessor extends WorkerHost {
   constructor(
     private readonly logger: Logger,
