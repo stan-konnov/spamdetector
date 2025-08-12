@@ -3,10 +3,10 @@ import { Logger } from '@nestjs/common';
 import { Job } from 'bullmq';
 
 import { ModerationJob } from '@src/moderation/types';
-import { MODERATION_QUEUE_NAME } from '@src/common/constants';
 import { ModerationService } from '@src/moderation/moderation.service';
+import { MODERATION_QUEUE_NAME, N_CONCURRENT_PROCESSES } from '@src/common/constants';
 
-@Processor(MODERATION_QUEUE_NAME)
+@Processor(MODERATION_QUEUE_NAME, { concurrency: N_CONCURRENT_PROCESSES })
 export class ModerationProcessor extends WorkerHost {
   constructor(
     private readonly logger: Logger,
