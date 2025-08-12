@@ -31,7 +31,7 @@ export class ModerationService {
       );
     }
 
-    this.logger.log(`Moderating post with ID ${postId}. Content: ${postContent}`);
+    this.logger.log(`Moderating post with ID ${postId}. Content: ${postContent}.`);
 
     try {
       const moderationVerdict = await this.generateModerationVerdict(postContent);
